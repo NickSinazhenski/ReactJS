@@ -52,7 +52,7 @@
   .basket {
     position: relative;
     background-color: #35B8BE;
-    padding: 8px;
+    padding: 5px;
     border-radius: 4px;
   }
   
@@ -68,6 +68,6 @@
     color: #35B8BE;
     font-size: 10px;
     font-weight: bold;
-    padding: 2px 6px;
+    padding: 2px 4px;
     border-radius: 50%;
   }
