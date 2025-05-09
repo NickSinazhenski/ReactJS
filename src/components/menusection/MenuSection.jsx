@@ -1,33 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "./MenuSection.module.css";
 import BurgerCard from "./BurgerCards.jsx";
+import useFetch from "../hooks/useFetch.js";
 
 const API_URL = "https://65de35f3dccfcd562f5691bb.mockapi.io/api/v1/meals";
 
 const MenuSection = () => {
-  const [meals, setMeals] = useState([]);
+  const { data: meals, loading, error } = useFetch(API_URL);
   const [visibleMeals, setVisibleMeals] = useState(6);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState("");
   const clickableCategories = [
     { label: "Desert", value: "Dessert" },
     { label: "Dinner", value: "Dinner" },
     { label: "Breakfast", value: "Breakfast" },
   ];
-
-  useEffect(() => {
-    fetch(API_URL)
-      .then((res) => res.json())
-      .then((data) => {
-        setMeals(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        setError(error);
-        setLoading(false);
-      });
-  }, []);
 
   const handleSeeMore = () => {
     setVisibleMeals((prev) => prev + 6);
