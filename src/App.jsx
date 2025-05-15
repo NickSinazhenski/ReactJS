@@ -6,7 +6,6 @@ import MenuSection from "../src/components/menusection/MenuSection.jsx";
 import CartProvider from "../src/components/menusection/CartContext.jsx";
 
 const App = () => {
-
     return (
       <CartProvider>
         <Header />
@@ -16,5 +15,6 @@ const App = () => {
       </CartProvider>
     );
   };
+
 
 export default App;
