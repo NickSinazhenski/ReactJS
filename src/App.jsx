@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
-import './App.css'
-import Header from '../src/components/Header.jsx';
-import Footer from './components/Footer.jsx';   
-import MenuSection from './components/MenuSection.jsx';
-import CartProvider from '../src/components/CartContext.jsx';
+import React from "react";
+import "./App.css";
+import Header from "../src/components/header/Header.jsx";
+import Footer from "../src/components/footer/Footer.jsx";
+import MenuSection from "../src/components/menusection/MenuSection.jsx";
+import CartProvider from "../src/components/menusection/CartContext.jsx";
 
-class App extends Component {
-  render() {
+const App = () => {
     return (
       <CartProvider>
         <Header />
@@ -15,7 +14,7 @@ class App extends Component {
         <Footer />
       </CartProvider>
     );
-  }
-}
+  };
+
 
 export default App;

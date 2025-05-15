@@ -1,0 +1,73 @@
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+
+
+.container {
+  width: 100%;
+  max-width: 1440px; 
+  padding: 0 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+
+  
+  .logo {
+    height: 40px;
+  }
+  
+  .nav {
+    display: flex;
+    gap: 32px;
+  }
+
+  .menu_list {
+    display: flex;
+    align-items: center;
+    gap: 100px;
+    margin-left: 700px; 
+  }
+
+  .link {
+    text-decoration: none;
+    color: #28224B;
+    font-weight: 400;
+    font-family: Inter;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0%;
+
+  }
+  
+  .link:hover {
+    color: #35B8BE;
+  }
+  
+  
+  .basket {
+    position: relative;
+    background-color: #35B8BE;
+    padding: 5px;
+    border-radius: 4px;
+  }
+  
+  .basket img {
+    height: 24px;
+  }
+  
+  .num_orders {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background-color: white;
+    color: #35B8BE;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 2px 4px;
+    border-radius: 50%;
+  }
