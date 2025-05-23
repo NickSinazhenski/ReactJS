@@ -1,7 +1,7 @@
-import React from "react";
+import { FC } from "react";
 import styles from "./CurveAfterHeader.module.css";
 
-const CurveAfterHeader = () => {
+const CurveAfterHeader: FC = () => {
     return (
         <div className={styles.skew}></div>
     );

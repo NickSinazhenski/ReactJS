@@ -1,13 +1,13 @@
-import React from "react";
+import React, { FC } from "react";
 import styles from "./Footer.module.css";
-import footerLinks from "./footerLinks.js";
+import footerLinks from "./footerLinks";
 import logo from "../../assets/logo.png";
 import instagram from "../../assets/instagram.png";
 import twitter from "../../assets/twitter.png";
 import youtube from "../../assets/youtube.png";
 
 
-const Footer = () =>{
+const Footer: FC = () =>{
     return (
       <footer className={styles.footer}>
         <div className={styles.container}>
@@ -21,10 +21,10 @@ const Footer = () =>{
               </p>
             </div>
             <div className={styles.columns}>
-              {footerLinks.map((column, index) => (
+              {footerLinks.map((column: { title: string; links: { name: string; href: string }[] }, index: number) => (
                 <div key={index} className={styles.column}>
                   <h4>{column.title}</h4>
-                  {column.links.map((link, idx) => (
+                  {column.links.map((link: { name: string; href: string }, idx: number) => (
                     <a key={idx} href={link.href}>
                       {link.name}
                     </a>

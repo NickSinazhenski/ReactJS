@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import {
   Container,
   ContainerContent,
@@ -8,10 +8,10 @@ import {
   RatingContainer,
   ImageSection,
   RatingText,
-} from "./HomePage.styles.js";
+} from "./HomePage.styles";
 import photo from "../../assets/homepagephoto.png";
 
-const Home = () => {
+const Home: FC = () => {
     return (
       <Container>
         <ContainerContent>

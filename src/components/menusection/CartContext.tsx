@@ -1,11 +1,27 @@
-import React, { createContext, useState, useCallback } from 'react';
+import React, { createContext, useState, useCallback, ReactNode } from 'react';
 
-export const CartContext = createContext();
+type CartItem = {
+  id: string | number;
+  count: number;
+  [key: string]: any;
+};
 
-const CartProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState([]);
+export type CartContextType = {
+  cartItems: CartItem[];
+  addToCart: (item: CartItem) => void;
+  getTotalCount: () => number;
+};
 
-  const addToCart = useCallback((item) => {
+export const CartContext = createContext<CartContextType | undefined>(undefined);
+
+type CartProviderProps = {
+  children: ReactNode;
+};
+
+const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+
+  const addToCart = useCallback((item: CartItem) => {
     setCartItems((prevItems) => {
       const existingItem = prevItems.find((i) => i.id === item.id);
 

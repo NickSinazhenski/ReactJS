@@ -1,9 +1,9 @@
 import { initializeApp } from "firebase/app";
+import type { FirebaseOptions } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 
-
-const firebaseConfig = {
+const firebaseConfig: FirebaseOptions = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: "react-lab-2a200.firebaseapp.com",
   projectId: "react-lab-2a200",

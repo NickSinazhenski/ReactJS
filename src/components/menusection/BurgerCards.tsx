@@ -1,8 +1,21 @@
-import React from "react";
+import React, { FC } from "react";
 import styles from "./BurgerCards.module.css";
 import AddToCart from "./AddToCart";
 
-const BurgerCards = ({ items = [] }) => {
+type Item = {
+  id: string | number;
+  img: string;
+  meal: string;
+  price: number;
+  area: string;
+  [key: string]: any;
+};
+
+type BurgerCardsProps = {
+  items?: Item[];
+};
+
+const BurgerCards: FC<BurgerCardsProps> = ({ items = [] }) => {
   return (
     <>
       {items.map((item) => (

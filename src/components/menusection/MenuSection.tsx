@@ -1,14 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, FC } from "react";
 import styles from "./MenuSection.module.css";
-import BurgerCard from "./BurgerCards.jsx";
-import useFetch from "../hooks/useFetch.js";
+import BurgerCard from "./BurgerCards";
+import useFetch from "../hooks/useFetch";
+
+type Meal = {
+  id: string;
+  category: string;
+  img: string;
+  meal: string;
+  price: number;
+  area: string;
+};
 
 const API_URL = "https://65de35f3dccfcd562f5691bb.mockapi.io/api/v1/meals";
 
-const MenuSection = () => {
-  const { data: meals, loading, error } = useFetch(API_URL);
-  const [visibleMeals, setVisibleMeals] = useState(6);
-  const [selectedCategory, setSelectedCategory] = useState("");
+const MenuSection: FC = () => {
+  const { data, loading, error } = useFetch<Meal[]>(API_URL);
+  const meals = data ?? [];
+  const [visibleMeals, setVisibleMeals] = useState<number>(6);
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
   const clickableCategories = [
     { label: "Desert", value: "Dessert" },
     { label: "Dinner", value: "Dinner" },
@@ -19,7 +29,7 @@ const MenuSection = () => {
     setVisibleMeals((prev) => prev + 6);
   };
 
-  const сategoryClick = (category) => {
+  const сategoryClick = (category: string) => {
     setSelectedCategory(category);
     setVisibleMeals(6);
   };
@@ -46,7 +56,11 @@ const MenuSection = () => {
 
         <div className={styles.meal_types}>
           {clickableCategories.map((category, index) => (
-            <button key={index} className={styles.meal_type} onClick={() => сategoryClick(category.value)}>
+            <button
+              key={index}
+              className={styles.meal_type}
+              onClick={() => сategoryClick(category.value)}
+            >
               {category.label}
             </button>
           ))}
