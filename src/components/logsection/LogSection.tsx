@@ -3,13 +3,11 @@ import { auth } from '../../firebase/firebase';
 import { signInWithEmailAndPassword, signOut, User } from 'firebase/auth';
 import styles from './LogSection.module.css';
 import { useAppDispatch, useAppSelector } from '../../components/hooks/hooks';
-import { loginUser, logoutUser } from '../../redux/authorizationSlice';
+import { loginUser, logoutUser, setEmail, setPassword } from '../../redux/authorizationSlice';
 
 const LogSection: FC = () => {
   const dispatch = useAppDispatch();
-  const { user, error } = useAppSelector((state) => state.auth);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const { user, error, email, password } = useAppSelector((state) => state.auth);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -32,7 +30,7 @@ const LogSection: FC = () => {
                 type="text"
                 placeholder="UserName"
                 value={email}
-                onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => dispatch(setEmail(e.target.value))}
               />
             </label>
 
@@ -42,7 +40,7 @@ const LogSection: FC = () => {
                 type="password"
                 placeholder="********************"
                 value={password}
-                onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => dispatch(setPassword(e.target.value))}
               />
             </label>
 

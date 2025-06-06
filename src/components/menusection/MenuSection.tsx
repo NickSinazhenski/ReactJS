@@ -3,6 +3,7 @@ import styles from "./MenuSection.module.css";
 import BurgerCard from "./BurgerCards";
 import { useAppDispatch, useAppSelector } from "../../components/hooks/hooks";
 import { fetchData } from "../../redux/fetchSlice";
+import { setVisibleMeals, setSelectedCategory, selectVisibleMeals, selectSelectedCategory } from "../../redux/menuUiSlice";
 
 type Meal = {
   id: string;
@@ -19,8 +20,8 @@ const MenuSection: FC = () => {
   const dispatch = useAppDispatch();
   const { data, loading, error } = useAppSelector((state) => state.fetch);
   const meals = (data as Meal[]) ?? [];
-  const [visibleMeals, setVisibleMeals] = useState<number>(6);
-  const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const visibleMeals = useAppSelector(selectVisibleMeals);
+  const selectedCategory = useAppSelector(selectSelectedCategory);
   const clickableCategories = [
     { label: "Desert", value: "Dessert" },
     { label: "Dinner", value: "Dinner" },
@@ -32,12 +33,12 @@ const MenuSection: FC = () => {
   }, [dispatch]);
 
   const handleSeeMore = () => {
-    setVisibleMeals((prev) => prev + 6);
+    dispatch(setVisibleMeals(visibleMeals + 6));
   };
 
   const сategoryClick = (category: string) => {
-    setSelectedCategory(category);
-    setVisibleMeals(6);
+    dispatch(setSelectedCategory(category));
+    dispatch(setVisibleMeals(6));
   };
 
   if (loading) return <p className={styles.status}>Loading meals...</p>;

@@ -6,12 +6,16 @@ interface AuthState {
   user: User | null;
   error: string | null;
   isLoading: boolean;
+  email: string;
+  password: string;
 }
 
 const initialState: AuthState = {
   user: null,
   error: null,
   isLoading: false,
+  email: '',
+  password: '',
 };
 
 export const loginUser = createAsyncThunk(
@@ -36,7 +40,14 @@ export const logoutUser = createAsyncThunk('auth/logoutUser', async () => {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    setEmail(state, action: PayloadAction<string>) {
+      state.email = action.payload;
+    },
+    setPassword(state, action: PayloadAction<string>) {
+      state.password = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(loginUser.pending, (state) => {
@@ -59,5 +70,7 @@ const authSlice = createSlice({
       });
   },
 });
+
+export const { setEmail, setPassword } = authSlice.actions;
 
 export default authSlice.reducer;
