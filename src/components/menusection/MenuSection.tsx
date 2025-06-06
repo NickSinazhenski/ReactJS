@@ -1,7 +1,8 @@
-import React, { useState, FC } from "react";
+import React, { useState, FC, useEffect } from "react";
 import styles from "./MenuSection.module.css";
 import BurgerCard from "./BurgerCards";
-import useFetch from "../hooks/useFetch";
+import { useAppDispatch, useAppSelector } from "../../components/hooks/hooks";
+import { fetchData } from "../../redux/fetchSlice";
 
 type Meal = {
   id: string;
@@ -15,8 +16,9 @@ type Meal = {
 const API_URL = "https://65de35f3dccfcd562f5691bb.mockapi.io/api/v1/meals";
 
 const MenuSection: FC = () => {
-  const { data, loading, error } = useFetch<Meal[]>(API_URL);
-  const meals = data ?? [];
+  const dispatch = useAppDispatch();
+  const { data, loading, error } = useAppSelector((state) => state.fetch);
+  const meals = (data as Meal[]) ?? [];
   const [visibleMeals, setVisibleMeals] = useState<number>(6);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const clickableCategories = [
@@ -24,6 +26,10 @@ const MenuSection: FC = () => {
     { label: "Dinner", value: "Dinner" },
     { label: "Breakfast", value: "Breakfast" },
   ];
+
+  useEffect(() => {
+    dispatch(fetchData({ url: API_URL }));
+  }, [dispatch]);
 
   const handleSeeMore = () => {
     setVisibleMeals((prev) => prev + 6);

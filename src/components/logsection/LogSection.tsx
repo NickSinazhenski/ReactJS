@@ -2,28 +2,22 @@ import { useState, FormEvent, FC, ChangeEvent } from 'react';
 import { auth } from '../../firebase/firebase'; 
 import { signInWithEmailAndPassword, signOut, User } from 'firebase/auth';
 import styles from './LogSection.module.css';
-
+import { useAppDispatch, useAppSelector } from '../../components/hooks/hooks';
+import { loginUser, logoutUser } from '../../redux/authorizationSlice';
 
 const LogSection: FC = () => {
+  const dispatch = useAppDispatch();
+  const { user, error } = useAppSelector((state) => state.auth);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [user, setUser] = useState<User | null>(null);
-  const [error, setError] = useState<string>('');
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try {
-      const firebaseResponse = await signInWithEmailAndPassword(auth, email, password);
-      setUser(firebaseResponse.user);
-      setError('');
-    } catch (err) {
-      setError('Invalid email or password');
-    }
+    dispatch(loginUser({ email, password }));
   };
 
   const handleLogout = () => {
-    signOut(auth);
-    setUser(null);
+    dispatch(logoutUser());
   };
 
   return (
