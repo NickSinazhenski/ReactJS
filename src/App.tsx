@@ -1,20 +1,48 @@
+import type { JSX } from "react";
 import React from "react";
 import "./App.css";
 import Header from "./components/header/Header.js";
 import Footer from "./components/footer/Footer.js";
-import MenuSection from "./components/menusection/MenuSection.js";
 import CurveAfterHeader from "./components/header/skewAfterHeader/CurveAfterHeader.js";
 import HomePage from "./components/homesection/HomePage.js";
 import LogSection from "./components/logsection/LogSection.js";
+import MenuSection from "./components/menusection/MenuSection.js";
+import NotFound from "./components/404/Error";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { useAppSelector } from "./components/hooks/hooks";
+
+const PrivateRoute = ({ children }: { children: JSX.Element }) => {
+  const user = useAppSelector((state) => state.auth.user);
+  return user ? children : <Navigate to="/login" />;
+};
 
 const App = () => {
   return (
-    <>
+    <Router>
       <Header />
-      <CurveAfterHeader />
-      <MenuSection />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={
+          <>
+            <CurveAfterHeader />
+            <LogSection />
+          </>
+        } />
+        <Route
+          path="/order"
+          element={
+            <PrivateRoute>
+              <>
+                <CurveAfterHeader />
+                <MenuSection />
+              </>
+            </PrivateRoute>
+          }
+        />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
       <Footer />
-    </>
+    </Router>
   );
 };
 
