@@ -20,6 +20,13 @@ export const Container = styled.div`
    clip-path: polygon(0 0, 100% 0, 100% 100%, 10% 67%);
     z-index: -1;
   }
+
+  @media (prefers-color-scheme: dark) {
+    &::before {
+      background-color: var(--special-bg-color);
+    }
+  }
+    
 `;
 
 export const ContainerContent = styled.div`

@@ -127,3 +127,14 @@
   .phone_tooltip:hover::after {
     opacity: 1;
   }
+
+  @media (prefers-color-scheme: dark) {
+    .menu_section{
+      background-color: var(--special-bg-color);
+    }
+    .meal_type{
+      background-color: var(--login-box-bg-colo);
+      color: var(--text-color)
+      
+    }
+  }
