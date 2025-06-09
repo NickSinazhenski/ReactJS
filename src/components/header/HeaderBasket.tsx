@@ -1,10 +1,12 @@
-import React, { useContext } from "react";
+import { FC, useContext } from "react";
 import styles from "./Header.module.css";
 import basketIcon from "../../assets/cart.png";
-import { CartContext } from "../menusection/CartContext";
+import { CartContext, type CartContextType } from "../menusection/CartContext";
 
-const HeaderBasket = () => {
-  const { getTotalCount } = useContext(CartContext);
+const HeaderBasket: FC = () => {
+  const cartContext = useContext(CartContext);
+  if (!cartContext) return null;
+  const { getTotalCount } = cartContext;
   const totalCount = getTotalCount();
 
   return (

@@ -1,13 +1,17 @@
 import { useState, useEffect } from "react";
 
-const useFetch = (url, fetchOptions = {}) => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+const useFetch = <T = unknown>(url: string, fetchOptions: RequestInit = {}) => {
+  const [data, setData] = useState<T | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<unknown>(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      const requestInfo = {
+      const requestInfo: {
+        url: string;
+        method: string;
+        body: BodyInit | null;
+      } = {
         url,
         method: fetchOptions.method || "GET",
         body: fetchOptions.body || null,

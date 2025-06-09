@@ -1,10 +1,9 @@
-import React from "react";
+import React, { FC } from "react";
 import styles from "./Header.module.css";
-import HeaderBasket from "../header/HeaderBasket";
+import HeaderBasket from "./HeaderBasket";
 import logo from "../../assets/logo.png";
 
-
-const Header = () => {
+const Header: FC = () => {
   return (
     <header className={styles.header}>
       <div className={styles.container}>

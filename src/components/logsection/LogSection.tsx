@@ -1,16 +1,16 @@
-import { useState } from 'react';
-import { auth } from '../../firebase/firebase.js'; 
-import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { useState, FormEvent, FC, ChangeEvent } from 'react';
+import { auth } from '../../firebase/firebase'; 
+import { signInWithEmailAndPassword, signOut, User } from 'firebase/auth';
 import styles from './LogSection.module.css';
 
 
-const LogSection = () => {
+const LogSection: FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [user, setUser] = useState(null);
-  const [error, setError] = useState('');
+  const [user, setUser] = useState<User | null>(null);
+  const [error, setError] = useState<string>('');
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const firebaseResponse = await signInWithEmailAndPassword(auth, email, password);
@@ -38,7 +38,7 @@ const LogSection = () => {
                 type="text"
                 placeholder="UserName"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
               />
             </label>
 
@@ -48,7 +48,7 @@ const LogSection = () => {
                 type="password"
                 placeholder="********************"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
               />
             </label>
 
