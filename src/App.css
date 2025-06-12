@@ -1,12 +1,31 @@
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --header-text-color: #28224B;
+  --special-bg-color: #f6fafa;
+  --login-box-bg-color: #fff;
+}
+
+[data-theme="dark"] {
+  --bg-color: #121212;
+  --text-color: #546285;
+  --header-text-color: #ffffff;
+  --special-bg-color: #121212;
+  --login-box-bg-color: #090505;
+
+
+}
+
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: left;
-}
-
-.skew {
-  background-color:#f6fafa;
-  height: 80px;
-  clip-path: polygon(0 45%, 100% 0, 100% 100%, 0% 100%);
 }

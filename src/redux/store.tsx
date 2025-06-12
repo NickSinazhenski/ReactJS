@@ -3,6 +3,8 @@ import yourReducer from "./cartSlice";
 import fetchReducer from "./fetchSlice";
 import authReducer from "./authorizationSlice";
 import menuUiReducer from "./menuUiSlice";
+import themeReducer from "./themeSlice";
+
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +12,7 @@ export const store = configureStore({
     fetch: fetchReducer,
     auth: authReducer,
     menuUi: menuUiReducer,
+    theme: themeReducer,
   },
 });
 

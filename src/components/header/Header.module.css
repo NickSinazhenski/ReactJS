@@ -47,8 +47,8 @@
   .link:hover {
     color: #35B8BE;
   }
-  
-  
+
+
   .basket {
     position: relative;
     background-color: #35B8BE;
@@ -71,3 +71,27 @@
     padding: 2px 4px;
     border-radius: 50%;
   }
+  .themeToggle{
+  display: inline-block;
+  color: white;
+  background-color: #35b8be;
+  padding: 12px 24px;
+  text-decoration: none;
+  border-radius: 6px;
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 20px;
+  outline: none; 
+  border: none; 
+  text-align: center;
+  
+  }
+
+  @media (prefers-color-scheme: dark) {
+  .link {
+    color: var(--header-text-color);
+  }
+
+
+}

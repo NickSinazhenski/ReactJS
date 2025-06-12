@@ -103,3 +103,15 @@ label input {
   letter-spacing: 0%;
   color: #35B8BE;
 }
+@media (prefers-color-scheme: dark) {
+    .login_container{
+      background-color: var(--special-bg-color);
+    }
+    .login_box{
+      background-color: var(--login-box-bg-color);
+    }
+    label input{
+      background-color: var(--bg-color);
+      color: var(--text-color)
+    }
+  }
