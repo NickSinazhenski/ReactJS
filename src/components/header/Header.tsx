@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
 import HeaderBasket from "./HeaderBasket";
 import logo from "../../assets/logo.png";
@@ -7,23 +8,23 @@ const Header: FC = () => {
   return (
     <header className={styles.header}>
       <div className={styles.container}>
-        <a href="" className={styles.logoLink}>
+        <Link to="/" className={styles.logoLink}>
           <img src={logo} alt="logo" className={styles.logo} />
-        </a>
+        </Link>
         <div className={styles.menu_list}>
           <nav className={styles.nav}>
-            <a href="" className={styles.link}>
+            <Link to="/" className={styles.link}>
               Home
-            </a>
-            <a href="" className={styles.link}>
+            </Link>
+            <Link to="/order" className={styles.link}>
               Menu
-            </a>
-            <a href="" className={styles.link}>
+            </Link>
+            <Link to="/company" className={styles.link}>
               Company
-            </a>
-            <a href="" className={styles.link}>
+            </Link>
+            <Link to="/login" className={styles.link}>
               Login
-            </a>
+            </Link>
           </nav>
           <HeaderBasket />
         </div>

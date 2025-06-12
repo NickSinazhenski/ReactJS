@@ -1,0 +1,25 @@
+.container {
+  text-align: center;
+  padding: 100px 20px;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: center;
+}
+
+.link {
+  margin-top: 20px;
+  display: inline-block;
+  color: white;
+  background-color: #35b8be;
+  padding: 12px 24px;
+  text-decoration: none;
+  border-radius: 6px;
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 20px;
+  text-align: center;
+}

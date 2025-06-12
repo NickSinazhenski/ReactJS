@@ -1,4 +1,6 @@
-import React, { FC } from "react";
+import React, { FC, useCallback} from "react";
+import { useNavigate } from "react-router-dom";
+import { useAppSelector } from "../hooks/hooks";
 import {
   Container,
   ContainerContent,
@@ -12,6 +14,16 @@ import {
 import photo from "../../assets/homepagephoto.png";
 
 const Home: FC = () => {
+  const navigate = useNavigate();
+  const user = useAppSelector((state) => state.auth.user);
+
+  const handleOrderClick = useCallback(() => {
+    if (user) {
+      navigate("/order");
+    } else {
+      navigate("/login");
+    }
+  }, [user, navigate]);
     return (
       <Container>
         <ContainerContent>
@@ -23,7 +35,7 @@ const Home: FC = () => {
             industry. Lorem Ipsum has been the industry's standard dummy text ever
             since the 1500.
           </DescriptionText>
-          <OrderButton>Place an Order</OrderButton>
+          <OrderButton onClick={handleOrderClick}>Place an Order</OrderButton>
           <RatingContainer>
           <div className="stars">
                 <span>★</span>
@@ -43,3 +55,8 @@ const Home: FC = () => {
   };
   
   export default Home;
+
+  
+
+
+    
