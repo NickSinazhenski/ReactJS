@@ -4,7 +4,7 @@ import { useAppDispatch } from "../../../src/components/hooks/hooks";
 import { addItem } from "../../redux/cartSlice";
 
 type Item = {
-  id: string | number;
+  id: number;
   [key: string]: any;
 };
 
