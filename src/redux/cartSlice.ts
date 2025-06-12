@@ -32,6 +32,6 @@ const cartSlice = createSlice({
 });
 
 export const { addItem } = cartSlice.actions;
-export const selectTotalCount = (state: RootState) =>
-  state.yourData.items.reduce((total, item) => total + item.count, 0);
+export const selectTotalCount = (state: RootState): number =>
+  (state.yourData?.items ?? []).reduce((total: number, item: CartItem) => total + item.count, 0);
 export default cartSlice.reducer;
